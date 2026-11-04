@@ -1,0 +1,341 @@
+@use '@angular/material' as mat;
+
+:root {
+	--sq-ink: #0b1220;
+	--sq-ink-soft: #334155;
+	--sq-muted: #64748b;
+	--sq-canvas: #f4f6f9;
+	--sq-surface: #ffffff;
+	--sq-surface-2: #f8fafc;
+	--sq-border: #e2e8f0;
+	--sq-border-strong: #cbd5e1;
+	--sq-accent: #0f766e;
+	--sq-accent-hover: #0d9488;
+	--sq-accent-soft: #ecfdf8;
+	--sq-success: #15803d;
+	--sq-success-soft: #dcfce7;
+	--sq-warning: #b45309;
+	--sq-warning-soft: #fff7ed;
+	--sq-danger: #b91c1c;
+	--sq-danger-soft: #fee2e2;
+	--sq-info: #1d4ed8;
+	--sq-info-soft: #eff6ff;
+	--sq-radius: 10px;
+	--sq-radius-sm: 6px;
+	--sq-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+	--sq-font: "DM Sans", "Segoe UI", sans-serif;
+	--sq-display: "Instrument Serif", Georgia, serif;
+	--sq-sidebar: 248px;
+	--sq-sidebar-collapsed: 72px;
+	--sq-topbar: 56px;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: var(--sq-font);
+	color: var(--sq-ink);
+	background: var(--sq-canvas);
+	font-size: 15px;
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	color: var(--sq-accent);
+}
+
+button,
+.mat-mdc-button,
+.mat-mdc-outlined-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button {
+	font-family: inherit !important;
+	letter-spacing: 0 !important;
+}
+
+/* Material components ship without a font family unless a typography
+   theme is applied; keep every control on the app font. */
+.mat-mdc-form-field,
+.mat-mdc-form-field-infix,
+.mat-mdc-form-field-subscript-wrapper,
+.mat-mdc-form-field-hint,
+.mat-mdc-form-field-error,
+.mat-mdc-floating-label,
+.mat-mdc-select,
+.mat-mdc-select-value,
+.mat-mdc-option,
+.mat-mdc-menu-item,
+.mat-mdc-menu-content,
+.mat-mdc-checkbox,
+.mat-mdc-checkbox label,
+.mat-mdc-dialog-container,
+.mat-mdc-dialog-title,
+.mat-mdc-dialog-content,
+.mdc-text-field__input,
+.mdc-floating-label {
+	font-family: var(--sq-font) !important;
+	letter-spacing: 0 !important;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.025em;
+	color: var(--sq-ink);
+}
+
+/* Page primitives shared across features */
+.sq-page {
+	display: grid;
+	gap: 1rem;
+}
+
+.sq-panel {
+	background: var(--sq-surface);
+	border: 1px solid var(--sq-border);
+	border-radius: var(--sq-radius);
+	box-shadow: var(--sq-shadow);
+	padding: 1rem 1.1rem;
+}
+
+.sq-panel h2 {
+	margin: 0 0 0.7rem;
+	font-size: 0.95rem;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+.sq-panel-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 1rem;
+	margin-bottom: 0.7rem;
+}
+
+.sq-panel-head h2 {
+	margin: 0;
+}
+
+.sq-panel-head p {
+	margin: 0.2rem 0 0;
+	color: var(--sq-muted);
+	font-size: 0.85rem;
+}
+
+.sq-panel-head a {
+	font-size: 0.85rem;
+	font-weight: 600;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.sq-back {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	width: fit-content;
+	color: var(--sq-muted);
+	text-decoration: none;
+	font-size: 0.85rem;
+	font-weight: 500;
+}
+
+.sq-back:hover {
+	color: var(--sq-accent);
+}
+
+.sq-count {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 1.5rem;
+	height: 1.5rem;
+	padding: 0 0.45rem;
+	border-radius: 999px;
+	background: var(--sq-surface-2);
+	border: 1px solid var(--sq-border);
+	color: var(--sq-ink-soft);
+	font-size: 0.75rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+}
+
+.sq-metric {
+	background: var(--sq-surface);
+	border: 1px solid var(--sq-border);
+	border-radius: var(--sq-radius);
+	padding: 0.85rem 1rem;
+	box-shadow: var(--sq-shadow);
+}
+
+.sq-metric span {
+	display: block;
+	color: var(--sq-muted);
+	font-size: 0.78rem;
+	font-weight: 500;
+}
+
+.sq-metric strong {
+	display: block;
+	margin-top: 0.28rem;
+	font-size: 1.4rem;
+	font-weight: 700;
+	font-variant-numeric: tabular-nums;
+	letter-spacing: -0.03em;
+	line-height: 1.1;
+}
+
+.sq-metric small {
+	display: block;
+	margin-top: 0.25rem;
+	color: var(--sq-muted);
+	font-size: 0.74rem;
+}
+
+.sq-empty {
+	display: grid;
+	justify-items: center;
+	text-align: center;
+	gap: 0.35rem;
+	padding: 1.75rem 1.25rem;
+	color: var(--sq-muted);
+	background: var(--sq-surface);
+	border: 1px dashed var(--sq-border-strong);
+	border-radius: var(--sq-radius);
+}
+
+.sq-empty--compact {
+	padding: 1.15rem 1rem;
+	justify-items: start;
+	text-align: left;
+	background: var(--sq-surface-2);
+	border-style: solid;
+	border-color: var(--sq-border);
+}
+
+.sq-empty h2,
+.sq-empty strong {
+	margin: 0;
+	color: var(--sq-ink);
+	font-size: 1.05rem;
+	font-weight: 650;
+}
+
+.sq-empty p {
+	margin: 0;
+	max-width: 28rem;
+	font-size: 0.9rem;
+	line-height: 1.45;
+}
+
+.sq-empty .sq-empty-actions,
+.sq-empty > a,
+.sq-empty > button {
+	margin-top: 0.55rem;
+}
+
+.sq-error {
+	color: var(--sq-danger);
+	background: var(--sq-danger-soft);
+	border: 1px solid #fecaca;
+	border-radius: var(--sq-radius-sm);
+	padding: 0.7rem 0.85rem;
+	margin: 0;
+	font-size: 0.9rem;
+}
+
+.sq-notice {
+	color: var(--sq-warning);
+	background: var(--sq-warning-soft);
+	border: 1px solid #fed7aa;
+	border-radius: var(--sq-radius-sm);
+	padding: 0.7rem 0.85rem;
+	margin: 0;
+	font-size: 0.9rem;
+}
+
+.sq-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.sq-table th {
+	text-align: left;
+	font-size: 0.72rem;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: var(--sq-muted);
+	font-weight: 600;
+	padding: 0.45rem 0.7rem;
+	border-bottom: 1px solid var(--sq-border);
+}
+
+.sq-table td {
+	padding: 0.7rem;
+	border-bottom: 1px solid var(--sq-border);
+	vertical-align: middle;
+}
+
+.sq-table tr:last-child td {
+	border-bottom: 0;
+}
+
+.sq-table a {
+	color: var(--sq-ink);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.sq-table a:hover {
+	color: var(--sq-accent);
+}
+
+.sq-amount {
+	font-variant-numeric: tabular-nums;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+/* Material accent overrides — teal instead of azure-blue purple */
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-fab.mat-primary {
+	--mdc-filled-button-container-color: var(--sq-accent);
+	--mdc-filled-button-label-text-color: #fff;
+	--mdc-protected-button-container-color: var(--sq-accent);
+	--mdc-protected-button-label-text-color: #fff;
+}
+
+.mat-mdc-outlined-button {
+	--mdc-outlined-button-outline-color: var(--sq-border-strong);
+	--mdc-outlined-button-label-text-color: var(--sq-ink-soft);
+}
+
+.mat-mdc-form-field {
+	--mdc-outlined-text-field-outline-color: var(--sq-border);
+	--mdc-outlined-text-field-hover-outline-color: var(--sq-border-strong);
+	--mdc-outlined-text-field-focus-outline-color: var(--sq-accent);
+}
+
+:focus-visible {
+	outline: 2px solid var(--sq-accent);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		transition: none !important;
+		animation: none !important;
+	}
+}

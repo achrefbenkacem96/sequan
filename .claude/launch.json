@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "backend",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd backend && set -a && . ../.env && set +a && exec mvn spring-boot:run"],
+      "port": 8080
+    },
+    {
+      "name": "frontend",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd frontend && exec npm start"],
+      "port": 4200
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+.DS_Store
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+.claude/settings.local.json
+
+# Backend
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+.m2/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/coverage/
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
