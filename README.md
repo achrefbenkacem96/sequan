@@ -30,6 +30,19 @@ Clients create an escrow, invite participants, fund it through Stripe, and relea
 - **Auditable:** append-only ledger entries plus a per-escrow event history.
 - **Minimal PCI scope:** card data stays with Stripe Checkout and never touches Sequan.
 
+## Screenshots
+
+| Dashboard | Escrow awaiting release |
+|---|---|
+| ![Dashboard: balances, escrows needing action and status breakdown](docs/screenshots/dashboard.png) | ![Escrow detail: funded amount, participants and shares, release conditions and audit trail](docs/screenshots/escrow-detail.png) |
+
+<details>
+<summary>Sign-in</summary>
+
+![Sign-in page](docs/screenshots/login.png)
+
+</details>
+
 ## Architecture
 
 ```mermaid
@@ -91,7 +104,26 @@ npm install
 npm start
 ```
 
-### 5. Forward Stripe webhooks
+### 5. Load demo data (optional)
+
+```bash
+psql -h localhost -U sequan -d sequan -f backend/src/main/resources/db/demo_seed.sql
+```
+
+Run it after the backend has started once, so Flyway has created the schema. It creates eight escrows
+covering every stage of the lifecycle and these accounts, all with the password `password123`:
+
+| Account | Role in the demo escrows |
+|---|---|
+| `client@sequan.test` | Client: creates, funds and approves releases |
+| `provider@sequan.test` | Provider: receives released funds |
+| `approver@sequan.test` | Approver: must approve some releases |
+| `beneficiary@sequan.test` | Beneficiary: receives a share of funds |
+| `arbitrator@sequan.test` | Arbitrator: resolves disputes |
+
+The demo data is for local use only; never load it into a production database.
+
+### 6. Forward Stripe webhooks
 
 ```bash
 stripe listen --forward-to localhost:8080/api/webhooks/stripe
@@ -174,7 +206,9 @@ cd backend && mvn test
 cd frontend && npm test -- --watch=false --browsers=ChromeHeadless
 ```
 
-Critical coverage includes state transitions, money invariants, the JWT round trip and webhook signature rejection.
+19 backend tests cover the escrow state machine, money invariants (`funded = released + refunded + available`),
+share calculation, the JWT round trip and Stripe webhook signature rejection. CI also builds the Angular app
+and scans the full git history for secrets with Gitleaks.
 
 ## Project structure
 
