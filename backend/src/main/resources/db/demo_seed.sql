@@ -93,9 +93,9 @@ INSERT INTO users (
 ),
 (
 	'11111111-1111-1111-1111-111111111106',
-	'ashrefbenkassem@gmail.com',
+	'taylor@sequan.test',
 	'$2b$10$8sFDa49bCK/lKqWzgNHhFu0FUw0rZcwFfhEw/LmPk7m.aOjXbdize',
-	'Ashref Benkassem',
+	'Taylor Provider',
 	'USER',
 	NULL,
 	'acct_1UOgICK4umeaGEXL',
@@ -252,7 +252,7 @@ INSERT INTO escrow_participants (
 	'22222222-2222-2222-2222-222222222202',
 	'11111111-1111-1111-1111-111111111106',
 	'PROVIDER', 'PERCENT_BPS', 7000, 'ACCEPTED', 'NOT_REQUIRED', FALSE,
-	'ashrefbenkassem@gmail.com', NOW() - INTERVAL '12 days', NOW() - INTERVAL '10 days'
+	'taylor@sequan.test', NOW() - INTERVAL '12 days', NOW() - INTERVAL '10 days'
 ),
 (
 	'33333333-3333-3333-3333-333333333313',

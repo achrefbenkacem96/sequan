@@ -1,0 +1,14 @@
+# Secret scanning configuration (used by the CI secret-scan job).
+title = "Sequan gitleaks config"
+
+[extend]
+useDefault = true
+
+# The test profile contains obvious placeholder values (sk_test_placeholder, whsec_test_secret,
+# a dummy JWT secret) that must never be used outside tests. Real keys come from environment
+# variables only (see .env.example).
+[allowlist]
+description = "Test-only placeholder credentials"
+paths = [
+    '''backend/src/(main|test)/resources/application-test\.yml''',
+]
